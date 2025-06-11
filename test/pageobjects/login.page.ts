@@ -1,5 +1,7 @@
 import { $ } from '@wdio/globals'
 import Page from './page';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -34,6 +36,7 @@ class LoginPage extends Page {
      * overwrite specific options to adapt it to page object
      */
     public open () {
+        console.log("_--------------------------------" + process.env.BASE_URL);
         return super.open('sign-in');
     }
 }
