@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","10457","YUK-117 - Login valid","","Wed Jun 11 10:01:49 UTC 2025","broken","Wed Jun 11 10:01:59 UTC 2025","","Login suite","",""
+"","10325","YUK-117 - Login valid","","Wed Jun 11 10:04:51 UTC 2025","broken","Wed Jun 11 10:05:02 UTC 2025","","Login suite","",""
