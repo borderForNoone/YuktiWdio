@@ -44,6 +44,12 @@ export const config: WebdriverIO.Config = {
         }],
     ],
 
+    afterTest: async function (test, context, { error, result, duration, passed }) {
+        if (!passed) {
+            await browser.takeScreenshot();
+        }
+    },
+
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
