@@ -16,7 +16,10 @@ export const config: WebdriverIO.Config = {
     maxInstances: 10,
 
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage']
+        }
     }],
 
     logLevel: 'info',
