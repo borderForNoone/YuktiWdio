@@ -4,6 +4,7 @@ import SecurePage from '../pageobjects/secure.page'
 
 describe('Login suite', () => {
     it('YUK-117 - Login valid', async () => {
+        
         await LoginPage.open();
 
         await LoginPage.login(`${process.env.EMAIL}`, `${process.env.PASSWORD}`);
