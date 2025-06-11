@@ -31,27 +31,43 @@ jobs:
         run: npm run wdio
 
       # Optional: Generate and upload Allure Report
-      - name: Generate Allure Report
+      - name: Generate Allure report
         if: always()
         run: |
-          npm install -g allure-commandline
-          allure generate allure-results --clean -o allure-report
+          if [ -d "allure-results" ]; then
+            npm run allure:generate
+          else
+            echo "allure-results directory not found"
+            exit 1
+          fi
 
-      - name: Upload Allure Report
+      - name: Upload Allure report as artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: allure-report
           path: allure-report
 
       - name: Deploy Allure Report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
-          publish_branch: gh-pages
-
-      - name: Print GitHub Pages URL
-        if: always()
-        run: echo "GitHub Pages is available at - https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Set up git
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          
+          # Check out the gh-pages branch
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git worktree add gh-pages gh-pages
+          cd gh-pages
+          
+          # Clear the gh-pages branch content
+          rm -rf ./*
+          
+          # Copy the Allure report to the gh-pages branch
+          cp -R ../allure-report/* .
+          
+          # Commit and push the report to the gh-pages branch
+          git add .
+          git commit -m "Update Allure report"
+          git push origin gh-pages
