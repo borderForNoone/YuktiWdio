@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check if site is reachable
+        run: curl -I $BASE_URL || true
+
+
       - name: Run WebdriverIO tests
         run: npm run wdio
 
