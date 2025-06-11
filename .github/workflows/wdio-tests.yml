@@ -27,9 +27,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check if site is reachable
-        run: curl -I $BASE_URL || true
-
+      - name: Check if HTTP redirects to HTTPS
+        run: |
+          echo "Checking for HTTP to HTTPS redirect..."
+          HTTP_URL=$(echo "$BASE_URL" | sed 's/^https:/http:/')
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$HTTP_URL")
+          if [[ "$CODE" =~ ^3 ]]; then
+            echo "❌ ERROR: HTTP redirected to HTTPS (status code $CODE)."
+            exit 1
+          else
+            echo "✅ OK: No redirect from HTTP detected (status code $CODE)."
+          fi
 
       - name: Run WebdriverIO tests
         run: npm run wdio
