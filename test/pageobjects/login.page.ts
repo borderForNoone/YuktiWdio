@@ -36,7 +36,6 @@ class LoginPage extends Page {
      * overwrite specific options to adapt it to page object
      */
     public open () {
-        console.log("_--------------------------------" + process.env.BASE_URL);
         return super.open('sign-in');
     }
 }
