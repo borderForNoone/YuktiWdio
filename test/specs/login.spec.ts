@@ -1,10 +1,9 @@
 import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page'
-import SecurePage from '../pageobjects/secure.page'
+import SecurePage from '../pageobjects/dashboard.page'
 
 describe('Login suite', () => {
     it('YUK-117 - Login valid', async () => {
-        //await browser.url(`${process.env.BASE_URL}`);
         await LoginPage.open();
 
         await LoginPage.login(`${process.env.EMAIL}`, `${process.env.PASSWORD}`);

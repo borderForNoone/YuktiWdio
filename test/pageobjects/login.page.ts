@@ -1,4 +1,3 @@
-import { $ } from '@wdio/globals'
 import Page from './page';
 import * as dotenv from 'dotenv';
 dotenv.config();
