@@ -24,6 +24,14 @@ xdescribe('Workflow templates suite', () => {
         await WorkOrderTemplate.maxTimeInputField.setValue("1");
         await WorkOrderTemplate.nextButton.click();
 
-        
+        await WorkOrderTemplate.activityNameInputField.addValue("Test");
+        await WorkOrderTemplate.briefDescriptionInputField.addValue("Test");
+        await WorkOrderTemplate.activityTypeSelector.selectByVisibleText('New Activity');
+        await WorkOrderTemplate.textInputFieldBuildingBlock.click();
+        await WorkOrderTemplate.textInputFieldBuildingBlock.click();
+        await WorkOrderTemplate.imageBuildingBlock.click();
+
+        await WorkOrderTemplate.publishButton.click();
+        await expect(WorkOrderTemplate.messageSuccess).toBeDisplayed();
     });
 });

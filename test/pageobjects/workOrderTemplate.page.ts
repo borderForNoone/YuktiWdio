@@ -18,7 +18,35 @@ class WorkOrderTemplatePage extends Page {
     }
 
     public get nextButton() {
-        return $('div.create-work-location button.GreenButton');
+        return $('button.GreenButton');
+    }
+
+    public get textLableBuildingBlock() {
+        return $("li.formbuilder-icon-header");
+    }
+
+    public get textInputFieldBuildingBlock() {
+        return $("li.formbuilder-icon-text");
+    }
+
+    public get imageBuildingBlock() {
+        return $("li.formbuilder-icon-image");
+    }
+
+    public get activityNameInputField() {
+        return $('input[name="activityTemplateName"]');
+    }
+
+    public get briefDescriptionInputField() {
+        return $('textarea[placeholder="Enter brief description"]');
+    }
+
+    public get activityTypeSelector() {
+        return $('select[name="activityTypeID"]');
+    }
+
+    public get publishButton() {
+        return $("button.GreenButton");
     }
 
     public open() {
