@@ -1,6 +1,4 @@
 import Page from './page';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 /**
  * sub page containing specific selectors and methods for a specific page
