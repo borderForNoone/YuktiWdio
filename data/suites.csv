@@ -1,2 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","5876","YUK-117 - Login valid","","Wed Jun 11 11:04:22 UTC 2025","passed","Wed Jun 11 11:04:28 UTC 2025","","Login suite","",""
+"","1","YUK-54 - A newly created project appears in the top panel only after refreshing the page.","","Thu Jun 12 06:38:07 UTC 2025","skipped","Thu Jun 12 06:38:07 UTC 2025","","Project suite","",""
+"","5156","YUK-117 - Login valid","","Thu Jun 12 06:38:07 UTC 2025","passed","Thu Jun 12 06:38:12 UTC 2025","","Login suite","",""
+"","1","YUK-81 - Created Warehouse Location not shown in the list of created Warehouse Locations","","Thu Jun 12 06:38:07 UTC 2025","skipped","Thu Jun 12 06:38:07 UTC 2025","","Warehouse Locations suite","",""
