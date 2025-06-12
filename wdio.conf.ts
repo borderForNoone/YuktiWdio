@@ -18,7 +18,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080']
+            args: ['--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080']
         }
     }],
 

@@ -3,7 +3,7 @@ import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WarehouseLocations from '../pageobjects/warehouseLocations.page'
 
-xdescribe('Warehouse Locations suite', () => {
+describe('Warehouse Locations suite', () => {
     before(async () => {
         await LoginPage.open();
         await LoginPage.login(`${process.env.EMAIL}`, `${process.env.PASSWORD}`);
@@ -13,7 +13,34 @@ xdescribe('Warehouse Locations suite', () => {
         );
     });
 
-    it('YUK-81 - Created Warehouse Location not shown in the list of created Warehouse Locations', async () => {
+    xit('YUK-82 - User(Vendor) can create Warehouse', async () => {
+        await WarehouseLocations.open();
+
+        await expect(WarehouseLocations.messageSuccess).not.toBeDisplayed();
+        await WarehouseLocations.headerTogglerButton.click();
+        await WarehouseLocations.createWarehouseButton.click();
+
+        const randomSuffix = Math.floor(Math.random() * 100000); 
+        const warehouseName = `Test${randomSuffix}`;
+
+        await WarehouseLocations.warehouseNameInputField.setValue(warehouseName);
+        await WarehouseLocations.areaInputField.setValue(100);
+
+        await WarehouseLocations.statusSwitch.click();
+
+        await WarehouseLocations.nextButton.click();
+        await WarehouseLocations.addressInputField.setValue("Test");
+        await WarehouseLocations.countrySelector.selectByVisibleText('India');
+        await WarehouseLocations.stateSelector.selectByVisibleText('Maharashtra');
+        await WarehouseLocations.citySelector.selectByVisibleText('Sillod');
+        await WarehouseLocations.zipCodeInputField.setValue(100);
+
+        await WarehouseLocations.nextButton.click();
+        await WarehouseLocations.createWarehouseButton.click();
+        await expect(WarehouseLocations.messageSuccess).toBeDisplayedInViewport();
+    });
+
+    xit('YUK-81 - Created Warehouse Location not shown in the list of created Warehouse Locations', async () => {
         await WarehouseLocations.open();
 
         await expect(WarehouseLocations.messageSuccess).not.toBeDisplayed();
@@ -63,5 +90,22 @@ xdescribe('Warehouse Locations suite', () => {
         }
 
         await expect(isFound).toBe(true);
+    });
+
+    it('YUK-83 - (square feet) cannot be negative in Create Warehouse', async () => {
+        await WarehouseLocations.open();
+
+        await expect(WarehouseLocations.messageSuccess).not.toBeDisplayed();
+        await WarehouseLocations.headerTogglerButton.click();
+        await WarehouseLocations.createWarehouseButton.click();
+
+        const randomSuffix = Math.floor(Math.random() * 100000); 
+        const warehouseName = `Test${randomSuffix}`;
+
+        await WarehouseLocations.warehouseNameInputField.setValue(warehouseName);
+        await WarehouseLocations.areaInputField.setValue(-50);
+
+        await expect(WarehouseLocations.areaInputField).toHaveValue('-50'); 
+        await expect(WarehouseLocations.areaInputField).toHaveAttribute('class', expect.stringContaining('error'));
     });
 });
