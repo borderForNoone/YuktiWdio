@@ -14,7 +14,15 @@ export default class Page {
     /**
      * define selectors using getter methods
      */
-    public get messageSuccess () {
+    public get messageSuccess() {
         return $('.ant-message-success');
+    }
+
+    public get navbatWarehouseLocationsButton() {
+        return $('[href="/wh-locations"]');
+    }
+
+    public get headerTogglerButton() {
+        return $("button.c-header-toggler");
     }
 }
