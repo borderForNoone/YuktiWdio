@@ -13,7 +13,7 @@ describe('Warehouse Locations suite', () => {
         );
     });
 
-    xit('YUK-82 - User(Vendor) can create Warehouse', async () => {
+    it.skip('YUK-82 - User(Vendor) can create Warehouse', async () => {
         await WarehouseLocations.open();
 
         await expect(WarehouseLocations.messageSuccess).not.toBeDisplayed();
@@ -40,7 +40,7 @@ describe('Warehouse Locations suite', () => {
         await expect(WarehouseLocations.messageSuccess).toBeDisplayedInViewport();
     });
 
-    xit('YUK-81 - Created Warehouse Location not shown in the list of created Warehouse Locations', async () => {
+    it.skip('YUK-81 - Created Warehouse Location not shown in the list of created Warehouse Locations', async () => {
         await WarehouseLocations.open();
 
         await expect(WarehouseLocations.messageSuccess).not.toBeDisplayed();

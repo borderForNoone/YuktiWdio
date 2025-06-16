@@ -3,7 +3,7 @@ import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WorkLocations from '../pageobjects/workLocations.page'
 
-xdescribe('Work locations suite', () => {
+describe.skip('Work locations suite', () => {
     before(async () => {
         await LoginPage.open();
         await LoginPage.login(`${process.env.EMAIL}`, `${process.env.PASSWORD}`);

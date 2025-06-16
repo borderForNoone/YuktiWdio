@@ -1,7 +1,5 @@
-/**
-* main page object containing all methods, selectors and functionality
-* that is shared across all page objects
-*/
+import type { ChainablePromiseArray } from 'webdriverio';
+
 export default class Page {
     /**
     * Opens a sub page of the page
@@ -24,5 +22,40 @@ export default class Page {
 
     public get headerTogglerButton() {
         return $("button.c-header-toggler");
+    }
+
+    public async clickElementByIndex(
+        elements: ChainablePromiseArray,
+        index: number
+    ): Promise<void> {
+        const resolvedElements = await elements;
+
+        if (await resolvedElements.length === 0) {
+            throw new Error('No elements found');
+        }
+
+        if (index < 0 || index >= await resolvedElements.length) {
+            throw new Error(`Index ${index} is out of bounds (0 to ${await resolvedElements.length - 1})`);
+        }
+
+        await resolvedElements[index].waitForClickable({ timeout: 5000 });
+        await resolvedElements[index].click();
+    }
+
+    public async waitUntilElementsMoreThan(
+        elements: ChainablePromiseArray,
+        count: number,
+        timeout = 5000,
+        interval = 250
+    ): Promise<void> {
+        const start = Date.now();
+
+        while (Date.now() - start < timeout) {
+            const resolved = await elements;
+            if (await resolved.length > count) return;
+            await browser.pause(interval);
+        }
+
+        throw new Error(`Timed out waiting for elements count > ${count}`);
     }
 }
