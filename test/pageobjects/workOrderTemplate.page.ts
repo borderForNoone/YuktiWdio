@@ -49,6 +49,18 @@ class WorkOrderTemplatePage extends Page {
         return $("button.GreenButton");
     }
 
+    public get editTemplateButtons() {
+        return $$("span.edit-icon");
+    }
+
+    public get saveButton() {
+        return $("button.lightBlueButton");
+    }
+
+    public get errorMsg() {
+        return $("div.ant-message-error");
+    }
+
     public open() {
         return super.open('workflow-template');
     }

@@ -3,7 +3,7 @@ import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WorkOrderTemplate from '../pageobjects/workOrderTemplate.page'
 
-xdescribe('Workflow templates suite', () => {
+describe('Workflow templates suite', () => {
     before(async () => {
         await LoginPage.open();
         await LoginPage.login(`${process.env.EMAIL}`, `${process.env.PASSWORD}`);
@@ -13,7 +13,7 @@ xdescribe('Workflow templates suite', () => {
         );
     });
 
-    it('YUK-101 - User(Vendor) can create work order template', async () => {
+    it.skip('YUK-101 - User(Vendor) can create work order template', async () => {
         await WorkOrderTemplate.open();
 
         await WorkOrderTemplate.createWorkOrderTemplateButton.click();
@@ -33,5 +33,31 @@ xdescribe('Workflow templates suite', () => {
 
         await WorkOrderTemplate.publishButton.click();
         await expect(WorkOrderTemplate.messageSuccess).toBeDisplayed();
+    });
+
+    it('YUK-91 - User(Vendor) cannot edit created by him work order templates', async () => {
+        await WorkOrderTemplate.open();
+        await expect(WorkOrderTemplate.createWorkOrderTemplateButton).toBeDisplayed();
+        await WorkOrderTemplate.editTemplateButtons[5].waitForDisplayed({ timeout: 5000 });
+
+        await WorkOrderTemplate.waitUntilElementsMoreThan(WorkOrderTemplate.editTemplateButtons, 4);
+        
+        const buttons = WorkOrderTemplate.editTemplateButtons;
+        const lastIndex = await buttons.length - 1;
+
+        await WorkOrderTemplate.clickElementByIndex(buttons, lastIndex);
+
+        await WorkOrderTemplate.saveButton.click();
+        await WorkOrderTemplate.errorMsg.waitForExist({ timeout: 5000 });
+        await browser.waitUntil(async () => {
+            const text = await WorkOrderTemplate.errorMsg.getText();
+            return text && text.trim().length > 0;
+        }, {
+            timeout: 5000,
+            timeoutMsg: 'Expected error message text to be non-empty'
+        });
+
+        const actualText = await WorkOrderTemplate.errorMsg.getText();
+        await expect(actualText).not.toEqual("Object reference not set to an instance of an object.");
     });
 });
