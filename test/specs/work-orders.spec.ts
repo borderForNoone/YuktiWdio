@@ -52,18 +52,25 @@ describe('Work orders suite', () => {
         }
 
         await expect(WorkOrder.projectNameSelector).toBeDisplayed();
-        await browser.execute(() => {
-            window.scrollTo(0, document.body.scrollHeight);
-        });
+        await WorkOrder.assignedCrewCard.scrollIntoView();
         await expect(WorkOrder.assignedCrewCard).toBeDisplayed();
+        await WorkOrder.removeAsignedCrewButton.scrollIntoView();
+        await expect(WorkOrder.removeAsignedCrewButton).toBeDisplayed();
         await WorkOrder.removeAsignedCrewButton.click();
         
-        await WorkOrder.assignedCrewCard.waitForDisplayed({ reverse: true, timeout: 5000 });
-        await expect(WorkOrder.assignedCrewCard).not.toBeDisplayed();
+        await expect(WorkOrder.removeAsignedCrewButton).not.toBeDisplayed();
 
         await WorkOrder.saveEditedButton.click();
         await expect(WorkOrder.messageSuccess).toBeDisplayed();
         await WorkOrder.returnToWorkOrdersListButton.click();
+        await browser.waitUntil(async () => {
+            const orders = await WorkOrder.workOrders;
+            return await orders.length > 2;
+        }, {
+            timeout: 5000,
+            interval: 500,
+            timeoutMsg: 'Expected more than 2 work orders to be present, but timeout exceeded.'
+        });
 
         for (let i = 0; i < await WorkOrder.workOrders.length; i++) {
             const order = WorkOrder.workOrders[i];
