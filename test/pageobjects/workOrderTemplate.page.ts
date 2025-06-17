@@ -17,6 +17,10 @@ class WorkOrderTemplatePage extends Page {
         return $('input[name="maximumTime"]');
     }
 
+    public get maxTimeErrorMsg() {
+        return $("//input[@name='maximumTime']/following-sibling::span");
+    }
+
     public get nextButton() {
         return $('button.GreenButton');
     }

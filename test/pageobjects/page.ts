@@ -24,6 +24,10 @@ export default class Page {
         return $("button.c-header-toggler");
     }
 
+    public get projectSelector() {
+        return $("select.form-control");
+    }
+
     public async clickElementByIndex(
         elements: ChainablePromiseArray,
         index: number
