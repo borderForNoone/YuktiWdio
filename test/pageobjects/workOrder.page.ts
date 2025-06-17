@@ -65,6 +65,10 @@ class WorkOrderPage extends Page {
         return $('input[placeholder="Search Assets"]');
     }
 
+    public get assetOptions() {
+        return $$('div.ant-select-item-option-content');
+    }
+
     public get firstAssetOption() {
         return $$('div.ant-select-item-option-content')[0];
     }

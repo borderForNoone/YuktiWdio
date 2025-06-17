@@ -52,6 +52,7 @@ describe('Work orders suite', () => {
         }
 
         await expect(WorkOrder.projectNameSelector).toBeDisplayed();
+        await WorkOrder.removeAsignedCrewButton.scrollIntoView();
         await expect(WorkOrder.assignedCrewCard).toBeDisplayed();
         await WorkOrder.removeAsignedCrewButton.click();
         await expect(WorkOrder.assignedCrewCard).not.toBeDisplayed();
@@ -156,7 +157,7 @@ describe('Work orders suite', () => {
         await WorkOrder.assetInputField.click();
         await WorkOrder.assetInputField.addValue("Test123");
         await WorkOrder.assetInputField.click();
-        await WorkOrder.firstAssetOption.click();
+        await WorkOrder.assetOptions[1].click();
         
         await expect(WorkOrder.selectedAssetCard).toBeDisplayed();
         await expect(await WorkOrder.selectedAssetCard.getText()).toContain("test");
