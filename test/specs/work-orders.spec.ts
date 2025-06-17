@@ -103,8 +103,8 @@ describe('Work orders suite', () => {
         await WorkOrder.assetInputField.waitForDisplayed({ timeout: 5000 });
         await WorkOrder.assetInputField.click();
         
-        await expect(WorkOrder.selectedAssetCard).toBeDisplayed();
-        await expect(await WorkOrder.selectedAssetCard.getText()).toContain("test");
+        await expect(WorkOrder.firstAssetOption).toBeDisplayed();
+        await expect(await WorkOrder.firstAssetOption.getText()).toContain("test");
     });
 
     it('YUK-35 - Cant immediately see the available serial numbers for selected warehouse in work order creation', async () => {
