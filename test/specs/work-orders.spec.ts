@@ -52,9 +52,13 @@ describe('Work orders suite', () => {
         }
 
         await expect(WorkOrder.projectNameSelector).toBeDisplayed();
-        await WorkOrder.removeAsignedCrewButton.scrollIntoView();
+        await browser.execute(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+        });
         await expect(WorkOrder.assignedCrewCard).toBeDisplayed();
         await WorkOrder.removeAsignedCrewButton.click();
+        
+        await WorkOrder.assignedCrewCard.waitForDisplayed({ reverse: true, timeout: 5000 });
         await expect(WorkOrder.assignedCrewCard).not.toBeDisplayed();
 
         await WorkOrder.saveEditedButton.click();
