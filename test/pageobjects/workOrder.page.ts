@@ -77,8 +77,20 @@ class WorkOrderPage extends Page {
         return $('div.innerCard');
     }
 
+    public get swimlaneVendorsInputField() {
+        return $('input[id*="react-select"]');
+    }
+
+    public get swimlaneCrews() {
+        return $$('label.ant-checkbox-wrapper');
+    } 
+
     public open() {
         return super.open('work-order/list-view');
+    }
+
+    public openSwimlane() {
+        return super.open('work-order/swim-lane');
     }
 }
 

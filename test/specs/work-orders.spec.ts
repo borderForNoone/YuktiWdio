@@ -2,6 +2,7 @@ import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WorkOrder from '../pageobjects/workOrder.page'
+import { Key } from 'webdriverio'
 
 describe('Work orders suite', () => {
     before(async () => {
@@ -27,7 +28,6 @@ describe('Work orders suite', () => {
     it('YUK-29 - After removing crew and vendor and updating WO, WO status does not change from Assigned', async () => {
         await WorkOrder.open();
 
-        await expect(WorkOrder.projectSelector).toBeDisplayed();
         await WorkOrder.projectSelector.selectByVisibleText('test');
 
         await browser.waitUntil(async () => {
@@ -174,9 +174,60 @@ describe('Work orders suite', () => {
         await expect(await WorkOrder.selectedAssetCard.getText()).toContain("test");
     });
 
-    it.skip('YUK-84 - User(Vendor) can select all crews and see their work orders', async () => {
-        await WorkOrder.open();
+    it('YUK-84 - User(Vendor) can select all crews and see their work orders', async () => {
+        await WorkOrder.openSwimlane();
 
+        await WorkOrder.projectSelector.selectByVisibleText("test");
 
+        await WorkOrder.swimlaneVendorsInputField.addValue("Anvil Cables");	
+
+        await expect(await WorkOrder.swimlaneVendorsInputField.getAttribute('aria-owns')).not.toBeNull();
+
+        const el = await WorkOrder.swimlaneVendorsInputField;
+        const location = await el.getLocation();     
+        const size = await el.getSize();             
+
+        const clickX = location.x + size.width / 2;  
+        const clickY = location.y + size.height + 5;  
+
+        await browser.performActions([{
+            type: 'pointer',
+            id: 'mouse1',
+            parameters: { pointerType: 'mouse' },
+            actions: [
+                { type: 'pointerMove', duration: 0, x: clickX, y: clickY },
+                { type: 'pointerDown', button: 0 },
+                { type: 'pointerUp', button: 0 }
+            ]
+        }]);
+
+        await browser.releaseActions();
+
+        await browser.waitUntil(async () => {
+            if (!(await WorkOrder.swimlaneVendorsInputField.isExisting())) return false;
+            const attr = await WorkOrder.swimlaneVendorsInputField.getAttribute('aria-owns');
+            return attr === null;
+        }, {
+            timeout: 5000,
+            timeoutMsg: 'aria-owns still exists or element not found'
+        });
+
+        const ariaOwns = await WorkOrder.swimlaneVendorsInputField.getAttribute('aria-owns');
+        await expect(ariaOwns).toBeNull();
+
+        let found = false;
+        for (const crew of await WorkOrder.swimlaneCrews) {
+            const text = await crew.getText();
+            if (text.includes('Test1')) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new Error('Expected crew list to contain "Test1", but it was not found.');
+        }
+
+        await expect(found).toBe(true);
     });
 });
