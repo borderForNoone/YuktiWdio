@@ -24,4 +24,3 @@ describe.skip('Project suite', () => {
         await ProjectPage.startDate.setValue("");
     });
 });
-

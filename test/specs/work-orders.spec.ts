@@ -2,7 +2,6 @@ import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WorkOrder from '../pageobjects/workOrder.page'
-import { Key } from 'webdriverio'
 
 describe('Work orders suite', () => {
     before(async () => {

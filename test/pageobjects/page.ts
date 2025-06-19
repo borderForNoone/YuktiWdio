@@ -16,6 +16,10 @@ export default class Page {
         return $('.ant-message-success');
     }
 
+    public get messageError() {
+        return $("div.ant-message-error");
+    }
+
     public get navbatWarehouseLocationsButton() {
         return $('[href="/wh-locations"]');
     }
