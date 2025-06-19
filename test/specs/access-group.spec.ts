@@ -53,4 +53,37 @@ describe('Access Groups suite', () => {
             }
         }
     });
+
+    it('YUK-77 - Page stops being visible after clicking outside of edit Access Group window', async () => {
+        await AccessGroupsPage.open();
+
+        await AccessGroupsPage.accessGroupEditButtons[9].moveTo();
+
+        await AccessGroupsPage.dropdownEditOption.click();
+
+        const { width, height } = await browser.execute(() => {
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+        });
+
+        const x = 10;
+        const y = Math.floor(height / 2);
+
+        await browser.performActions([{
+            type: 'pointer',
+            id: 'mouse1',
+            parameters: { pointerType: 'mouse' },
+            actions: [
+                { type: 'pointerMove', duration: 0, x, y },
+                { type: 'pointerDown', button: 0 },
+                { type: 'pointerUp', button: 0 }
+            ]
+        }]);
+
+        await browser.releaseActions();
+
+        await expect(AccessGroupsPage.createNewAccessGroupButton).toBeDisplayedInViewport();
+    });
 });

@@ -29,6 +29,18 @@ class AccessGroupsPage extends Page {
         return $$('tr.ant-table-row');
     }
 
+    public get accessGroupEditButtons() {
+        return $$('span.ant-dropdown-trigger');
+    }
+
+    public get dropdownEditOption() {
+        return $$("span.ant-dropdown-menu-title-content")[0];
+    }
+
+    public get editWindow() {
+        return $("div.modal-content");
+    }
+
     public open() {
         return super.open('access-groups');
     }
