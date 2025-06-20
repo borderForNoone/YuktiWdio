@@ -11,5 +11,13 @@ describe('Login suite', () => {
         await expect(SecurePage.messageSuccess).toHaveText(
         expect.stringContaining('Login successfully.'));
     });
+
+    it('YUK-115 - Error messages are not displayed with empty fields after clicking "Sign in" button', async () => {
+        await LoginPage.open();
+
+        await LoginPage.btnSubmit.click();
+        await expect(LoginPage.inputEmailErrorMsg).toBeDisplayed();
+        await expect(LoginPage.inputtPasswordErrorMsg).toBeDisplayed();
+    });
 });
 

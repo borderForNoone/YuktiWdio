@@ -61,7 +61,7 @@ describe('Access Groups suite', () => {
 
         await AccessGroupsPage.dropdownEditOption.click();
 
-        const { width, height } = await browser.execute(() => {
+        const { height } = await browser.execute(() => {
             return {
                 width: window.innerWidth,
                 height: window.innerHeight
