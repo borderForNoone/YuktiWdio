@@ -35,6 +35,14 @@ export const config: WebdriverIO.Config = {
     connectionRetryCount: 3,
    
     framework: 'mocha',
+
+    services: [
+      ['tesults',
+        {
+          target: process.env.TESULTS_TOKEN
+        }
+      ]
+    ],
   
     reporters: [
         ['allure', {
