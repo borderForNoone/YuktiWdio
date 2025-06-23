@@ -30,6 +30,14 @@ jobs:
       - name: Run WebdriverIO tests
         run: npm run wdio
 
+      - name: Check
+        id: check
+        uses: tesults/tesults-api-results-check@1.0.6
+        with:
+          target: ${{ secrets.TARGET }}
+          build: ${{ format('{0} {1}', 'Build ', github.run_number) }}
+          api_token: ${{ secrets.TESULTS_TOKEN }}
+
       # Optional: Generate and upload Allure Report
       - name: Generate Allure report
         if: always()
