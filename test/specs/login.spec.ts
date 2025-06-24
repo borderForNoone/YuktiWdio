@@ -3,6 +3,15 @@ import LoginPage from '../pageobjects/login.page'
 import SecurePage from '../pageobjects/dashboard.page'
 
 describe('Login suite', () => {
+    it('YUK-115 - Error messages are not displayed with empty fields after clicking "Sign in" button', async () => {
+        await LoginPage.open();
+
+        await LoginPage.btnSubmit.waitForDisplayed({ timeout: 5000 });
+        await LoginPage.btnSubmit.click();
+        await expect(LoginPage.inputEmailErrorMsg).toBeDisplayed();
+        await expect(LoginPage.inputtPasswordErrorMsg).toBeDisplayed();
+    });
+
     it('YUK-117 - Login valid', async () => {
         await LoginPage.open();
 

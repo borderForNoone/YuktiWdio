@@ -16,12 +16,20 @@ export default class Page {
         return $('.ant-message-success');
     }
 
+    public get messageError() {
+        return $("div.ant-message-error");
+    }
+
     public get navbatWarehouseLocationsButton() {
         return $('[href="/wh-locations"]');
     }
 
     public get headerTogglerButton() {
         return $("button.c-header-toggler");
+    }
+
+    public get projectSelector() {
+        return $("select.form-control");
     }
 
     public async clickElementByIndex(

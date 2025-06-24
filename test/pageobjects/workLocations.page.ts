@@ -1,16 +1,76 @@
 import Page from './page';
 
 class WorkLocationsPage extends Page {
+    public get textLableBuildingBlock() {
+        return $("li.formbuilder-icon-header");
+    }
+
+    public get firsEditBuidingBlockButton() {
+        return $('a[title="Edit"]');
+    }
+
+    public get buildingBlockLableInputField() {
+        return $('div[name="label"]');
+    }
+
+    public get textInputFieldBuildingBlock() {
+        return $("li.formbuilder-icon-text");
+    }
+
+    public get imageBuildingBlock() {
+        return $("li.formbuilder-icon-image");
+    }
+    
+    public get saveButton() {
+        return $("button.lightBlueButton");
+    }
+    
+    public get workOrderEditButtons() {
+        return $$("span.ant-dropdown-trigger");
+    }
+
+    public get dropdownEditOption() {
+        return $$("span.ant-dropdown-menu-title-content")[0];
+    }
+    
+    public get workLocations() {
+        return $$("tr.ant-table-row");
+    }
+    
+    public get searchPanel() {
+        return $("#inputSearch");
+    }
+    
     public get createWorkLocationButton() {
         return $("button.GreenButton");
     }
 
-    public get cotactNameInputField() {
+    public get createWorkLocationTemplateButton() {
+        return $("button.GreenButton");
+    }
+
+    public get contactNameInputField() {
         return $('input[name="contactName"]');
+    }
+
+    public get contactNameErrorMsg() {
+        return $("//input[@name='contactName']/following-sibling::span");
     }
 
     public get phoneInputField() {
         return $('input[name="contactPhone"]');
+    }
+
+    public get phoneInputFieldErrorMsg() {
+        return $("//input[@name='contactPhone']/following-sibling::span");
+    }
+
+    public get emailInputField() {
+        return $('input[name="contactEmail"]');
+    }
+
+    public get emailInputFieldErrorMsg() {
+        return $("//input[@name='contactEmail']/following-sibling::span");
     }
 
     public get locationIdentifierInputField() {
@@ -53,8 +113,16 @@ class WorkLocationsPage extends Page {
         return $('div.selectMenu select.form-control');
     }
 
+    public get cancelButton() {
+        return $('.lightBlueButton');
+    }
+
     public open() {
         return super.open('work-locations');
+    }
+
+    public openWorkLocationTemplates() {
+        return super.open('wl-templates');
     }
 }
 

@@ -14,6 +14,7 @@ jobs:
       EMAIL: ${{ secrets.EMAIL }}
       PASSWORD: ${{ secrets.PASSWORD }}
       BASE_URL: ${{ secrets.BASE_URL }}
+      TESULTS_TOKEN: ${{ secrets.TESULTS_TOKEN }}
 
     steps:
       - name: Checkout code

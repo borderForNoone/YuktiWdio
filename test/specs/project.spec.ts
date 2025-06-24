@@ -13,7 +13,7 @@ describe.skip('Project suite', () => {
         );
     });
 
-    it('YUK-54 - A newly created project appears in the top panel only after refreshing the page.', async () => {
+    it.skip('YUK-54 - A newly created project appears in the top panel only after refreshing the page.', async () => {
         await ProjectPage.open();
 
         await expect(ProjectPage.createProjectButton).toBeDisplayed();
@@ -23,5 +23,32 @@ describe.skip('Project suite', () => {
         await ProjectPage.totalWorkordersInputField.setValue("Test");
         await ProjectPage.startDate.setValue("");
     });
-});
 
+    it.skip('YUK-56 - If I click in the middle of the window to select a date, the calendar does not appear, I have to click on the small icon', async () => {
+        await ProjectPage.open();
+
+        await browser.waitUntil(async () => {
+            const elements = await ProjectPage.projectEditButtons;
+            return await elements.length > 2;
+        }, {
+            timeout: 5000,
+            timeoutMsg: 'Expected at least two edit button to be present'
+        });
+
+        for (let i = 0; i < await ProjectPage.projects.length; i++) {
+            const order = ProjectPage.projects[i];
+            const text = await order.getText();
+
+            if (text.includes('Test123')) {
+                await ProjectPage.projectEditButtons[i].moveTo();
+
+                await ProjectPage.dropdownEditOption.click();
+
+                break; 
+            }
+        }
+
+        await ProjectPage.startDate.addValue("22.22.2222");
+        await expect(ProjectPage.startDate);
+    });
+});
