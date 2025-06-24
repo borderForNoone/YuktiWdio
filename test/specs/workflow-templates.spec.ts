@@ -48,7 +48,7 @@ describe('Workflow templates suite', () => {
         await WorkOrderTemplate.clickElementByIndex(buttons, lastIndex);
 
         await WorkOrderTemplate.saveButton.click();
-        await WorkOrderTemplate.errorMsg.waitForExist({ timeout: 5000 });
+        await WorkOrderTemplate.errorMsg.waitForDisplayed({ timeout: 5000 });
         await browser.waitUntil(async () => {
             const text = await WorkOrderTemplate.errorMsg.getText();
             return text && text.trim().length > 0;

@@ -35,14 +35,6 @@ export const config: WebdriverIO.Config = {
     connectionRetryCount: 3,
    
     framework: 'mocha',
-
-    services: [
-      ['tesults',
-        {
-          target: process.env.TESULTS_TOKEN
-        }
-      ]
-    ],
   
     reporters: [
         ['allure', {
@@ -61,6 +53,6 @@ export const config: WebdriverIO.Config = {
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000,
-        // grep: /.*YUK-56.*/
+        grep: /.*TC_127.*/
     },
 }

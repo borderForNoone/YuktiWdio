@@ -4,6 +4,18 @@ import Page from './page';
  * sub page containing specific selectors and methods for a specific page
  */
 class ProjectPage extends Page {
+    public get projects() {
+        return $$(".ant-table-row");
+    }
+    
+    public get projectEditButtons() {
+        return $$("span.ant-dropdown-trigger");
+    }
+
+    public get dropdownEditOption() {
+        return $$("span.ant-dropdown-menu-title-content")[0];
+    }
+
     public get createProjectButton() {
         return $('button.GreenButton');
     }
