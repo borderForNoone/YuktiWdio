@@ -422,7 +422,7 @@ describe('Work locations suite', () => {
         });
     });
 
-    it('TC_57 - When attempting to edit a work location created by another vendor using default values, an invalid or unclear error message is shown, making it hard to understand the issue. ', async () => {
+    it('TC_57, TC_161, TC_162 - When attempting to edit a work location created by another vendor using default values, an invalid or unclear error message is shown, making it hard to understand the issue. ', async () => {
         await WorkLocations.open();
         
         await expect(WorkLocations.searchPanel).toBeDisplayed();
@@ -623,18 +623,284 @@ describe('Work locations suite', () => {
         });
     });
 
-    it('TC_281 - Check label field Work location Templates Checkbox Group building block', async () => {
+    it('TC_281, TC_283 - Check label field Work location Templates Radio Group building block', async () => {
         await WorkLocations.openWorkLocationTemplates();
 
         await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
         await WorkLocations.createWorkLocationTemplateButton.click();
 
-        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.radioGroupBlock.click();
         await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockLableInputField.setValue(" ");
 
         await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
             message: 'Label should not accept space as input (TC_281)',
+        });
+
+        await WorkLocations.buildingBlockLableInputField.setValue("232434");
+
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept numeric as input (TC_283)',
+        });
+    });
+
+    it('TC_286, TC_288 - Check Name field Work location Templates Radio Group building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.radioGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.nameInputFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_286)',
+        });
+
+        await WorkLocations.nameInputFieldBuildingBlock.setValue("232434");
+
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Label should not accept numeric as input (TC_283)',
+        });
+    });
+
+    it('TC_290, TC_292 - Check Options fields Work location Templates Radio Group building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.radioGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.firstOptionInputBlock.setValue(" ");
+
+        await expect(WorkLocations.firstOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_290)',
+        });
+
+        await WorkLocations.secondOptionInputBlock.setValue(" ");
+
+        await expect(WorkLocations.secondOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_290)',
+        });
+
+        await WorkLocations.firstOptionInputBlock.setValue("232434");
+
+        await expect(WorkLocations.firstOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Label should not accept numeric as input (TC_292)',
+        });
+
+        await WorkLocations.secondOptionInputBlock.setValue("232434");
+
+        await expect(WorkLocations.secondOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Label should not accept numeric as input (TC_292)',
+        });
+    });
+
+    it('TC_293, TC_294 - Check display dependent on field Work location Templates Radio Group building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.radioGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.displayDependentFieldBuildingBlock.setValue("12232");
+
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept numeric as input (TC_293)',
+        });
+
+        await WorkLocations.displayDependentFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_294)',
+        });
+    });
+
+    it('TC_298 - Check Required dependent on field Work location Templates Radio Group building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.radioGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.requiredDependentOnFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.requiredDependentOnFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_298)',
+        });
+    });
+
+    it('TC_301 - Check Edit AI Reading After X Attempts Work location Templates AI Meter photo building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.aIMeterPhotoBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.editAIReadingInputBlock.setValue(" ");
+
+        await expect(WorkLocations.editAIReadingInputBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_301)',
+        });
+    });
+
+    it('TC_136, TC_137, TC_138, TC_140 - Check Address Field ', async () => {
+        await WorkLocations.open();
+ 
+        await WorkLocations.createWorkLocationButton.click();
+ 
+        const randomSuffix = Math.floor(Math.random() * 100000);
+        const randomName = `Test${randomSuffix}`;
+        await WorkLocations.contactNameInputField.setValue(randomName);
+ 
+        await WorkLocations.phoneInputField.setValue("1245676777");
+        await WorkLocations.emailInputField.setValue("abc@gmail.com");
+        await WorkLocations.locationIdentifierInputField.setValue("1245676777");
+        await WorkLocations.worklocationGroupSelector.selectByVisibleText('Default');
+        await WorkLocations.nextButton.click();
+        await WorkLocations.addressInputField.setValue("y");
+       
+        await expect(WorkLocations.addressInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a address for Minimum 10 char allow (TC_136)',
+        });
+ 
+        await WorkLocations.addressInputField.setValue("&");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Minimum 10 char allow(TC_137)',
+        });
+ 
+        await WorkLocations.zipCodeInputField.setValue("4235");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Only Numbers Not Allowed(TC_138)',
+        });
+ 
+        await WorkLocations.zipCodeInputField.setValue("kugiuew buihqwu 876 xhqguygi iygigiquw vyfutfqwui bigyiqwugi bigodugqwou bigqwfiugqif giqwdydiuwyodhqoh");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Max Length reached(TC_140)',
+        });
+    });
+
+    it('TC_142, TC_143, TC_152, TC_153 - Check Zip code Field ', async () => {
+        await WorkLocations.open();
+ 
+        await WorkLocations.createWorkLocationButton.click();
+ 
+        const randomSuffix = Math.floor(Math.random() * 100000);
+        const randomName = `Test${randomSuffix}`;
+        await WorkLocations.contactNameInputField.setValue(randomName);
+ 
+        await WorkLocations.phoneInputField.setValue("1245676777");
+        await WorkLocations.emailInputField.setValue("abc@gmail.com");
+        await WorkLocations.locationIdentifierInputField.setValue("1245676777");
+        await WorkLocations.worklocationGroupSelector.selectByVisibleText('Default');
+
+        await WorkLocations.nextButton.click();
+        await WorkLocations.addressInputField.setValue("abcd");
+        await WorkLocations.countrySelector.selectByVisibleText('India');
+        await WorkLocations.stateSelector.selectByVisibleText('Maharashtra');
+        await WorkLocations.citySelector.selectByVisibleText('Sillod');
+        await WorkLocations.zipInputField.addValue("@@&%^$%^");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Invalid Input (TC_142)',
+        });
+ 
+        await WorkLocations.zipInputField.setValue("hiuhoi&");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Max length reached(TC_143)',
+        });
+ 
+        await WorkLocations.zipInputField.setValue("hiuhoi");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Only Numbers Allowed(TC_152)',
+        });
+ 
+         await WorkLocations.zipInputField.setValue("2");
+ 
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Invalid Zip code(TC_153)',
+        });
+ 
+    });
+ 
+    it('TC_158 - Check Worklocation list ', async () => {
+        await WorkLocations.open();
+
+        await browser.waitUntil(async () => (
+            await WorkLocations.workLocations.length) > 2,
+            {
+                timeout: 5000,
+                timeoutMsg: 'work Locations list did not load in time',
+            }
+        );
+ 
+        await expect(WorkLocations.workLocations[3]).toBeDisplayed({
+            message: 'Expected work location table to be displayed  (TC_158)',
+        });
+ 
+    });
+ 
+    it('TC_167, TC_169, TC_171 - Check Name', async () => {
+        await WorkLocations.openWorkLocationGroups();
+        await WorkLocations.createWorkLocationGroupButton.click();
+        await WorkLocations.groupNameInputField.setValue("7688")
+        await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not a valid name (TC_167)',
+        });
+ 
+        await WorkLocations.groupNameInputField.setValue("^*^*")
+        await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not allowed special char (TC_169)',
+        });
+ 
+        await WorkLocations.groupNameInputField.setValue("u")
+        await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group name minimum length is 3 char (TC_171)',
+        });
+    });
+ 
+    it('TC_177, TC_180 - Check Work location Group Templates', async () => {
+        await WorkLocations.openWorkLocationGroups();
+        await browser.waitUntil(async () => (
+            await WorkLocations.workLocations.length) > 0,
+            {
+                timeout: 5000,
+                timeoutMsg: 'work Locations list did not load in time',
+            }
+        );
+       
+        await WorkLocations.workLocationEditButtons[0].moveTo();
+        await WorkLocations.dropdownEditOption.click();
+
+        await expect(WorkLocations.workLocationGroupAction).toBeDisplayed({
+            message: 'Expected Delete button should be shown (TC_177)',
+        });
+        await expect(WorkLocations.workLocationGroupAction).toBeDisplayed({
+            message: 'Expected Edit button should be shown (TC_180)',
+        });
+    });
+ 
+    it('TC_182 - Check Error Message Group Templates', async () => {
+        await WorkLocations.openWorkLocationGroups();
+        await WorkLocations.createWorkLocationGroupButton.click();
+        await WorkLocations.groupNameInputField.setValue(" ")
+        await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group show a required message (TC_182)',
+        });
+ 
+        await WorkLocations.groupNameInputField.setValue("nkcsd")
+        await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not showing any error message(TC_182)',
         });
     });
 

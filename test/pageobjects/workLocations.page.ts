@@ -1,6 +1,26 @@
 import Page from './page';
 
 class WorkLocationsPage extends Page {
+    public get workLocationGroupTable() {
+        return $$("tbody.ant-table-tbody tr.ant-table-row");
+    }
+
+    public get workLocationGroupAction() {
+        return $$("ul.ant-dropdown-menu.ant-dropdown-menu-root li");
+    }
+
+    public get createWorkLocationGroupButton() {
+        return $("button.GreenButton");
+    }
+
+    public get groupNameInputField() {
+        return $('input[name="name"]');
+    }
+    
+    public get groupNameErrorMsg() {
+        return $("//input[@name='Name']/following-sibling::span");
+    }
+
     public get textLableBuildingBlock() {
         return $("li.formbuilder-icon-header");
     }
@@ -107,10 +127,40 @@ class WorkLocationsPage extends Page {
         return $("li.formbuilder-icon-checkbox-group");
     }
 
-    
+    public get radioGroupBlock() {
+        return $("li.formbuilder-icon-radio-group");
+    }
+
+    public get firstOptionInputBlock() {
+        return $('input[value="Option 1"]');
+    }
+
+    public get firstOptionInputBlockErrorMsg() {
+        return $('//input[@value="Option 1"]/following-sibling::span');
+    }
+
+     public get secondOptionInputBlock() {
+        return $('input[value="Option 2"]');
+    }
+
+    public get secondOptionInputBlockErrorMsg() {
+        return $('//input[@value="Option 2"]/following-sibling::span');
+    }
     
     public get imageBuildingBlock() {
         return $("li.formbuilder-icon-image");
+    }
+
+    public get aIMeterPhotoBlock() {
+        return $('li[data-type="ai-meter-reading"]');
+    }
+
+    public get editAIReadingInputBlock() {
+        return $('input[name="dataEditAIReadingAfterX"]');
+    }
+
+    public get editAIReadingInputBlockErrorMsg() {
+        return $('//input[@name="dataEditAIReadingAfterX"]/following-sibling::span');
     }
     
     public get saveButton() {
@@ -167,12 +217,19 @@ class WorkLocationsPage extends Page {
     public get emailInputFieldErrorMsg() {
         return $("//input[@name='contactEmail']/following-sibling::span");
     }
+
+    public get zipInputField() {
+        return $("//input[@name='zipCode']");
+    }
+    
     public get zipInputFieldErrorMsg() {
         return $("//input[@name='zipCode']/following-sibling::span");
     }
+
     public get addressInputFieldErrorMsg() {
         return $("//input[@name='address']/following-sibling::span");
     }
+
     public get locationIdentifierInputField() {
         return $('input[name="locationIdentifier"]');
     }
@@ -236,6 +293,10 @@ class WorkLocationsPage extends Page {
 
     public open() {
         return super.open('work-locations');
+    }
+
+    public openWorkLocationGroups() {
+        return super.open('work-locations-groups');
     }
 
     public openWorkLocationTemplates() {
