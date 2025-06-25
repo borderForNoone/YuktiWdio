@@ -13,6 +13,15 @@ class WorkLocationsPage extends Page {
         return $('div[name="label"]');
     }
 
+    public get buildingBlockNameInputField() {
+        return $('div[name="name"]');
+    }
+    public get buildingBlockLableInputFieldErrorMsg() {
+        return $("//div[@name='label']/following-sibling::span");
+    }
+    public get buildingBlockNameInputFieldErrorMsg() {
+        return $("//div[@name='name']/following-sibling::span");
+    }
     public get textInputFieldBuildingBlock() {
         return $("li.formbuilder-icon-text");
     }
@@ -72,11 +81,29 @@ class WorkLocationsPage extends Page {
     public get emailInputFieldErrorMsg() {
         return $("//input[@name='contactEmail']/following-sibling::span");
     }
-
+    public get zipInputFieldErrorMsg() {
+        return $("//input[@name='zipCode']/following-sibling::span");
+    }
+    public get addressInputFieldErrorMsg() {
+        return $("//input[@name='address']/following-sibling::span");
+    }
     public get locationIdentifierInputField() {
         return $('input[name="locationIdentifier"]');
     }
 
+
+    public get buildingBlockOptionLabelInputField() {
+        return $('input[class="option-label option-attr"]');
+    }
+    public get buildingBlockOptionValueInputField() {
+        return $('input[name="option-value option-attr"]');
+    }
+    public get buildingBlockOptionLabelErrorField() {
+        return $("//input[@name='optionLabel']/following-sibling::span");
+    }
+    public get buildingBlockOptionValueErrorField() {
+        return $("//input[@name='optionValue']/following-sibling::span");
+    }
     public get worklocationGroupSelector() {
         return $('select[name="workLocationGroupId"]');
     }

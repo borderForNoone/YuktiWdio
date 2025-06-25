@@ -289,4 +289,189 @@ describe('Work locations suite', () => {
             message: 'Expected error message to be shown for a email value (TC_127)',
         });
     });
+
+    it('TC_136, TC_137, TC_138, TC_140 - Check Address Field ', async () => {
+        await WorkLocations.open();
+
+        await WorkLocations.createWorkLocationButton.click();
+
+        const randomSuffix = Math.floor(Math.random() * 100000); 
+        const randomName = `Test${randomSuffix}`;
+        await WorkLocations.contactNameInputField.setValue(randomName);
+
+        await WorkLocations.phoneInputField.setValue("1245676777");
+        await WorkLocations.emailInputField.setValue("abc@gmail.com");
+        await WorkLocations.locationIdentifierInputField.setValue("1245676777");
+        await WorkLocations.worklocationGroupSelector.selectByVisibleText('Default');
+        await WorkLocations.nextButton.click();
+        await WorkLocations.addressInputField.setValue("y");
+        
+
+        await expect(WorkLocations.addressInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a address for Minimum 10 char allow (TC_136)',
+        });
+
+        await WorkLocations.addressInputField.setValue("&");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Minimum 10 char allow(TC_137)',
+        });
+
+        await WorkLocations.zipCodeInputField.setValue("4235");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Only Numbers Not Allowed(TC_138)',
+        });
+
+        await WorkLocations.zipCodeInputField.setValue("kugiuew buihqwu 876 xhqguygi iygigiquw vyfutfqwui bigyiqwugi bigodugqwou bigqwfiugqif giqwdydiuwyodhqoh");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Max Length reached(TC_140)',
+        });
+
+    });
+
+
+    it('TC_142, TC_143, TC_152, TC_153 - Check Zip code Field ', async () => {
+        await WorkLocations.open();
+
+        await WorkLocations.createWorkLocationButton.click();
+
+        const randomSuffix = Math.floor(Math.random() * 100000); 
+        const randomName = `Test${randomSuffix}`;
+        await WorkLocations.contactNameInputField.setValue(randomName);
+
+        await WorkLocations.phoneInputField.setValue("1245676777");
+        await WorkLocations.emailInputField.setValue("abc@gmail.com");
+        await WorkLocations.locationIdentifierInputField.setValue("1245676777");
+        await WorkLocations.worklocationGroupSelector.selectByVisibleText('Default');
+        await WorkLocations.nextButton.click();
+        await WorkLocations.addressInputField.setValue("abcd");
+        await WorkLocations.countrySelector.setValue("India");
+        await WorkLocations.stateSelector.setValue("Delhi");
+        await WorkLocations.citySelector.setValue("Delhi");
+        await WorkLocations.zipCodeInputField.setValue("@@&%^$%^");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Invalid Input (TC_142)',
+        });
+
+        await WorkLocations.zipCodeInputField.setValue("hiuhoi&");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Max length reached(TC_143)',
+        });
+
+        await WorkLocations.zipCodeInputField.setValue("hiuhoi");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Only Numbers Allowed(TC_152)',
+        });
+
+         await WorkLocations.zipCodeInputField.setValue("2");
+
+        await expect(WorkLocations.zipInputFieldErrorMsg).toBeDisplayed({
+            message: 'Expected error message to be shown for a zip value for Invalid Zip code(TC_153)',
+        });
+
+    });
+
+    it('TC_249, TC_251 - Check Label field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.textLableBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.buildingBlockLableInputField.setValue(" ");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_249)',
+        });
+
+        await WorkLocations.buildingBlockLableInputField.setValue("6869869");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_251)',
+        });
+ 
+        await WorkLocations.buildingBlockLableInputField.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept only special character as input',
+        });
+ 
+        await WorkLocations.buildingBlockLableInputField.setValue("q");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept one character as input ',
+        });
+    });
+ 
+    it('TC_254, TC_256 - Check Name field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.textLableBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.buildingBlockNameInputField.setValue(" ");
+ 
+        await expect(WorkLocations.buildingBlockNameInputFieldErrorMsg).toBeDisplayed({
+            message: 'Name should not accept space as input (TC_254)',
+        });
+
+        await WorkLocations.buildingBlockNameInputField.setValue("6869869");
+ 
+        await expect(WorkLocations.buildingBlockNameInputFieldErrorMsg).toBeDisplayed({
+            message: 'Name should not accept space as input (TC_256)',
+        });
+ 
+        await WorkLocations.buildingBlockNameInputField.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.buildingBlockNameInputFieldErrorMsg).toBeDisplayed({
+            message: 'Name should not accept only special character as input',
+        });
+ 
+        await WorkLocations.buildingBlockNameInputField.setValue("q");
+ 
+        await expect(WorkLocations.buildingBlockNameInputFieldErrorMsg).toBeDisplayed({
+            message: 'Name should not accept one character as input ',
+        });
+    });
+    
+     it('TC_257 - Check Option field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.textLableBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.buildingBlockOptionLabelInputField.setValue(" ");
+ 
+        await expect(WorkLocations.buildingBlockOptionLabelErrorField).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+
+        await WorkLocations.buildingBlockOptionLabelInputField.setValue("6869869");
+ 
+        await expect(WorkLocations.buildingBlockOptionLabelErrorField).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+ 
+        await WorkLocations.buildingBlockOptionLabelInputField.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.buildingBlockOptionLabelErrorField).toBeDisplayed({
+            message: 'Option Name should not accept only special character as input (TC_257)',
+        });
+ 
+        await WorkLocations.buildingBlockOptionLabelInputField.setValue("q");
+ 
+        await expect(WorkLocations.buildingBlockOptionLabelErrorField).toBeDisplayed({
+            message: 'Option Name should not accept one character as input (TC_257)',
+        });
+    });
 });
