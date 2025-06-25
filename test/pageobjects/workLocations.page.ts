@@ -9,7 +9,7 @@ class WorkLocationsPage extends Page {
         return $("//div[@name='label']/following-sibling::span");
     }
 
-    public get firsEditBuidingBlockButton() {
+    public get firsEditBuildingBlockButton() {
         return $('a[title="Edit"]');
     }
 
@@ -97,6 +97,12 @@ class WorkLocationsPage extends Page {
         return $('//input[@name="maxLength"]/following-sibling::span');
     }
 
+    public get checkboxGroupBlock() {
+        return $("li.formbuilder-icon-checkbox-group");
+    }
+
+    
+    
     public get imageBuildingBlock() {
         return $("li.formbuilder-icon-image");
     }

@@ -150,7 +150,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         const longText = 'A'.repeat(51); 
         await WorkLocations.buildingBlockLableInputField.setValue(longText);
 
@@ -374,7 +374,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockLableInputField.setValue(" ");
 
         await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
@@ -401,7 +401,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockdisplayDependentOnInputField.setValue("text");
 
         await expect(WorkLocations.buildingBlockdisplayDependentOnInputFieldErrorMsg).toBeDisplayed({
@@ -452,7 +452,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.dataValidationInputField.setValue(" ");
 
         await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
@@ -479,7 +479,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockLableInputField.setValue("111");
 
         await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
@@ -500,7 +500,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.placeholderInputFieldBuildingBlock.setValue(" ");
 
         await expect(WorkLocations.placeholderInputFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -521,7 +521,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.nameInputFieldBuildingBlock.setValue("1323234");
 
         await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -542,7 +542,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.valueInputFieldBuildingBlock.setValue(" ");
 
         await expect(WorkLocations.valueInputFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -557,7 +557,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.displayDependentFieldBuildingBlock.setValue(" ");
 
         await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -572,7 +572,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.requiredDependentOnFieldBuildingBlock.setValue(" ");
 
         await expect(WorkLocations.requiredDependentOnFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -587,7 +587,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.dataValidationInputField.setValue(" ");
 
         await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
@@ -608,7 +608,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
 
         await WorkLocations.textInputFieldBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.minLengthFieldBuildingBlock.setValue(" ");
 
         await expect(WorkLocations.minLengthFieldBuildingBlockErrorMsg).toBeDisplayed({
@@ -617,10 +617,23 @@ describe('Work locations suite', () => {
 
         await WorkLocations.maxLengthFieldBuildingBlock.setValue(" ");
 
-        await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
+        await expect(WorkLocations.maxLengthFieldBuildingBlockErrorMsg).toBeDisplayed({
             message: 'Should not accept space as input (TC_243)',
         });
     });
 
+    it('TC_281 - Check label field Work location Templates Checkbox Group building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.buildingBlockLableInputField.setValue(" ");
+
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_281)',
+        });
+    });
 });
