@@ -471,4 +471,156 @@ describe('Work locations suite', () => {
             message: 'Data Validation should not accept one character as input (TC_193)',
         });
     });
+
+    it('TC_206, TC_207 - Check Label field inside Input field bulding blocks', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.buildingBlockLableInputField.setValue("111");
+
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept numeric data as input (TC_206)',
+        });
+
+        await WorkLocations.buildingBlockLableInputField.setValue(" ");
+
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_207)',
+        });
+    });
+
+    it('TC_208, TC_211 - Check placeholder field Work location Templates text Input Field building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.placeholderInputFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.placeholderInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Placeholder should not accept space as input (TC_208)',
+        });
+
+        await WorkLocations.placeholderInputFieldBuildingBlock.setValue("1323234");
+
+        await expect(WorkLocations.placeholderInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Placeholder should not accept numeric value as input (TC_211)',
+        });
+    });
+
+    it('TC_212, TC_213 - Check Name field Work location Templates text Input Field building block', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.nameInputFieldBuildingBlock.setValue("1323234");
+
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept numeric value as input (TC_212)',
+        });
+
+        await WorkLocations.nameInputFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept space as input (TC_213)',
+        });
+    });
+
+    it('TC_218 - Check Value field Work location Templates text Input Field building block ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.valueInputFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.valueInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Value should not accept space as input (TC_218)',
+        });
+    });
+
+    it('TC_222 - Check display dependent field Work location Templates text Input Field building block ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.displayDependentFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_222)',
+        });
+    });
+
+    it('TC_225 - Check Required dependent on field Work location Templates text Input Field building block ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.requiredDependentOnFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.requiredDependentOnFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_225)',
+        });
+    });
+
+    it('TC_229, TC_231 - Check Data Validation field Work location Templates text Input Field building block ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.dataValidationInputField.setValue(" ");
+
+        await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_229)',
+        });
+
+        await WorkLocations.dataValidationInputField.setValue("232334344");
+
+        await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
+            message: 'Should not accept numeric as input (TC_231)',
+        });
+    });
+
+    it('TC_240, TC_243 - Check Min and Max Length Work location Templates text Input Fields building block ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+
+        await WorkLocations.textInputFieldBuildingBlock.click();
+        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.minLengthFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.minLengthFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_240)',
+        });
+
+        await WorkLocations.maxLengthFieldBuildingBlock.setValue(" ");
+
+        await expect(WorkLocations.dataValidationInputFieldErrorMsg).toBeDisplayed({
+            message: 'Should not accept space as input (TC_243)',
+        });
+    });
+
+
 });

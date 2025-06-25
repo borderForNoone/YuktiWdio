@@ -41,6 +41,62 @@ class WorkLocationsPage extends Page {
         return $("li.formbuilder-icon-text");
     }
 
+    public get placeholderInputFieldBuildingBlock() {
+        return $('input[name="placeholder"]');
+    }
+
+    public get placeholderInputFieldBuildingBlockErrorMsg() {
+        return $("//input[@name='placeholder']/following-sibling::span");
+    }
+
+    public get nameInputFieldBuildingBlock() {
+        return $('.input-wrap input[name="name"]');
+    }
+
+    public get nameInputFieldBuildingBlockErrorMsg() {
+        return $('//div[@class="input-wrap"]//input[@name="name"]/following-sibling::span');
+    }
+
+    public get valueInputFieldBuildingBlock() {
+        return $('input[name="value"]');
+    }
+
+    public get valueInputFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="value"]/following-sibling::span');
+    }
+
+    public get displayDependentFieldBuildingBlock() {
+        return $('input[name="displayDependentOn"]');
+    }
+
+    public get displayDependentFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="displayDependentOn"]/following-sibling::span');
+    }
+
+    public get requiredDependentOnFieldBuildingBlock() {
+        return $('input[name="requiredDependentOn"]');
+    }
+
+    public get requiredDependentOnFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="requiredDependentOn"]/following-sibling::span');
+    }
+
+    public get minLengthFieldBuildingBlock() {
+        return $('input[name="minLength"]');
+    }
+
+    public get minLengthFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="minLength"]/following-sibling::span');
+    }
+
+    public get maxLengthFieldBuildingBlock() {
+        return $('input[name="maxLength"]');
+    }
+
+    public get maxLengthFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="maxLength"]/following-sibling::span');
+    }
+
     public get imageBuildingBlock() {
         return $("li.formbuilder-icon-image");
     }
