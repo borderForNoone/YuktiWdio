@@ -2,6 +2,7 @@ import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page'
 import DashboardPage from '../pageobjects/dashboard.page'
 import WorkLocations from '../pageobjects/workLocations.page'
+import workLocationsGroup from '../pageobjects/workLocationsGroup.page';
 
 describe('Work locations suite', () => {
     before(async () => {
@@ -375,6 +376,79 @@ describe('Work locations suite', () => {
         });
 
     });
+
+    it('TC_158 - Check Worklocation list ', async () => {
+        await WorkLocations.open();
+
+        await WorkLocations.workLocationTable.length > 0;
+
+        await expect(WorkLocations.workLocationTable).toBeDisplayed({
+            message: 'Expected work location table to be displayed  (TC_158)',
+        });
+
+    });
+
+    it('TC_162 - Check Search bar', async () => {
+        await workLocationsGroup.open();
+        await workLocationsGroup.searchPanel.setValue("Default");
+        await workLocationsGroup.workLocationGroupTable.length > 0;
+
+        await expect(workLocationsGroup.workLocationGroupTable).toBeDisplayed({
+            message: 'Expected work location table to be displayed  (TC_162)',
+        });
+    });
+
+    it('TC_167, TC_169, TC_171 - Check Name', async () => {
+        await workLocationsGroup.open();
+        await workLocationsGroup.createWorkLocationGroupButton.click();
+        await workLocationsGroup.groupNameErrorMsg.setValue("7688")
+        await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not a valid name (TC_167)',
+        });
+
+        await workLocationsGroup.groupNameErrorMsg.setValue("^*^*")
+        await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not allowed special char (TC_169)',
+        });
+
+        await workLocationsGroup.groupNameErrorMsg.setValue("u")
+        await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group name minimum length is 3 char (TC_171)',
+        });
+    });
+
+
+
+    it('TC_177, TC_180 - Check Work location Group Templates', async () => {
+        await workLocationsGroup.open();
+        await workLocationsGroup.workLocationGroupTable.length > 0;
+        await workLocationsGroup.workLocationGroupAction.length > 0
+       
+        await expect(workLocationsGroup.workLocationGroupAction).toBeDisplayed({
+            message: 'Expected Delete button should be shown (TC_177)',
+        });
+        await expect(workLocationsGroup.workLocationGroupAction).toBeDisplayed({
+            message: 'Expected Edit button should be shown (TC_180)',
+        });
+    });
+
+
+
+    it('TC_182 - Check Error Message', async () => {
+        await workLocationsGroup.open();
+        await workLocationsGroup.createWorkLocationGroupButton.click();
+        await workLocationsGroup.groupNameErrorMsg.setValue(" ")
+        await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group show a required message (TC_182)',
+        });
+
+        await workLocationsGroup.groupNameErrorMsg.setValue("nkcsd")
+        await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
+            message: 'Expected work location group not showing any error message(TC_182)',
+        });
+
+    });
+
 
     it('TC_249, TC_251 - Check Label field inside text label bulding blocks for checkbox ', async () => {
         await WorkLocations.openWorkLocationTemplates();

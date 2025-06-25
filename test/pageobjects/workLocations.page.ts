@@ -49,6 +49,9 @@ class WorkLocationsPage extends Page {
     public get searchPanel() {
         return $("#inputSearch");
     }
+    public get workLocationTable() {
+        return $$("tbody.ant-table-tbody tr.ant-table-row");
+    }
     
     public get createWorkLocationButton() {
         return $("button.GreenButton");
