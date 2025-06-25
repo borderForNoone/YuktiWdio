@@ -5,12 +5,36 @@ class WorkLocationsPage extends Page {
         return $("li.formbuilder-icon-header");
     }
 
-    public get firsEditBuidingBlockButton() {
+    public get buildingBlockTextLableInputFieldErrorMsg() {
+        return $("//div[@name='label']/following-sibling::span");
+    }
+
+    public get firsEditBuildingBlockButton() {
         return $('a[title="Edit"]');
     }
 
     public get buildingBlockLableInputField() {
         return $('div[name="label"]');
+    }
+
+    public get buildingBlockLableInputFieldErrorMsg() {
+        return $("//div[@name='label']/following-sibling::span");
+    }
+
+    public get buildingBlockdisplayDependentOnInputField() {
+        return $('input[name="displayDependentOn"]');
+    }
+
+    public get buildingBlockdisplayDependentOnInputFieldErrorMsg() {
+        return $("//input[@name='displayDependentOn']/following-sibling::span");
+    }
+
+    public get dataValidationInputField() {
+        return $('input[name="dataValidation"]');
+    }
+
+    public get dataValidationInputFieldErrorMsg() {
+        return $("//input[@name='dataValidation']/following-sibling::span");
     }
 
     public get buildingBlockNameInputField() {
@@ -26,6 +50,68 @@ class WorkLocationsPage extends Page {
         return $("li.formbuilder-icon-text");
     }
 
+    public get placeholderInputFieldBuildingBlock() {
+        return $('input[name="placeholder"]');
+    }
+
+    public get placeholderInputFieldBuildingBlockErrorMsg() {
+        return $("//input[@name='placeholder']/following-sibling::span");
+    }
+
+    public get nameInputFieldBuildingBlock() {
+        return $('.input-wrap input[name="name"]');
+    }
+
+    public get nameInputFieldBuildingBlockErrorMsg() {
+        return $('//div[@class="input-wrap"]//input[@name="name"]/following-sibling::span');
+    }
+
+    public get valueInputFieldBuildingBlock() {
+        return $('input[name="value"]');
+    }
+
+    public get valueInputFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="value"]/following-sibling::span');
+    }
+
+    public get displayDependentFieldBuildingBlock() {
+        return $('input[name="displayDependentOn"]');
+    }
+
+    public get displayDependentFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="displayDependentOn"]/following-sibling::span');
+    }
+
+    public get requiredDependentOnFieldBuildingBlock() {
+        return $('input[name="requiredDependentOn"]');
+    }
+
+    public get requiredDependentOnFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="requiredDependentOn"]/following-sibling::span');
+    }
+
+    public get minLengthFieldBuildingBlock() {
+        return $('input[name="minLength"]');
+    }
+
+    public get minLengthFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="minLength"]/following-sibling::span');
+    }
+
+    public get maxLengthFieldBuildingBlock() {
+        return $('input[name="maxLength"]');
+    }
+
+    public get maxLengthFieldBuildingBlockErrorMsg() {
+        return $('//input[@name="maxLength"]/following-sibling::span');
+    }
+
+    public get checkboxGroupBlock() {
+        return $("li.formbuilder-icon-checkbox-group");
+    }
+
+    
+    
     public get imageBuildingBlock() {
         return $("li.formbuilder-icon-image");
     }
@@ -34,12 +120,12 @@ class WorkLocationsPage extends Page {
         return $("button.lightBlueButton");
     }
     
-    public get workOrderEditButtons() {
+    public get workLocationEditButtons() {
         return $$("span.ant-dropdown-trigger");
     }
 
     public get dropdownEditOption() {
-        return $$("span.ant-dropdown-menu-title-content")[0];
+        return $(".ant-dropdown-menu-title-content");
     }
     
     public get workLocations() {
@@ -92,6 +178,10 @@ class WorkLocationsPage extends Page {
     }
     public get locationIdentifierInputField() {
         return $('input[name="locationIdentifier"]');
+    }
+
+    public get locationIdentifierInputFieldErrorMsg() {
+        return $("//input[@name='locationIdentifier']/following-sibling::span");
     }
 
 
