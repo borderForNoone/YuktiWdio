@@ -16,7 +16,7 @@ class WorkLocationsPage extends Page {
     public get buildingBlockLableInputField() {
         return $('div[name="label"]');
     }
-
+    
     public get buildingBlockLableInputFieldErrorMsg() {
         return $("//div[@name='label']/following-sibling::span");
     }
@@ -39,9 +39,6 @@ class WorkLocationsPage extends Page {
 
     public get buildingBlockNameInputField() {
         return $('div[name="name"]');
-    }
-    public get buildingBlockLableInputFieldErrorMsg() {
-        return $("//div[@name='label']/following-sibling::span");
     }
     public get buildingBlockNameInputFieldErrorMsg() {
         return $("//div[@name='name']/following-sibling::span");

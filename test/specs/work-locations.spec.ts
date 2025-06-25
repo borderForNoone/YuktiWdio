@@ -804,7 +804,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
  
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockLableInputField.setValue(" ");
  
         await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
@@ -837,7 +837,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
  
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockNameInputField.setValue(" ");
  
         await expect(WorkLocations.buildingBlockNameInputFieldErrorMsg).toBeDisplayed({
@@ -870,7 +870,7 @@ describe('Work locations suite', () => {
         await WorkLocations.createWorkLocationTemplateButton.click();
  
         await WorkLocations.textLableBuildingBlock.click();
-        await WorkLocations.firsEditBuidingBlockButton.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
         await WorkLocations.buildingBlockOptionLabelInputField.setValue(" ");
  
         await expect(WorkLocations.buildingBlockOptionLabelErrorField).toBeDisplayed({
