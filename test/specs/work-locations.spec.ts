@@ -401,17 +401,17 @@ describe('Work locations suite', () => {
     it('TC_167, TC_169, TC_171 - Check Name', async () => {
         await workLocationsGroup.open();
         await workLocationsGroup.createWorkLocationGroupButton.click();
-        await workLocationsGroup.groupNameErrorMsg.setValue("7688")
+        await workLocationsGroup.groupNameInputField.setValue("7688")
         await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
             message: 'Expected work location group not a valid name (TC_167)',
         });
 
-        await workLocationsGroup.groupNameErrorMsg.setValue("^*^*")
+        await workLocationsGroup.groupNameInputField.setValue("^*^*")
         await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
             message: 'Expected work location group not allowed special char (TC_169)',
         });
 
-        await workLocationsGroup.groupNameErrorMsg.setValue("u")
+        await workLocationsGroup.groupNameInputField.setValue("u")
         await expect(workLocationsGroup.groupNameErrorMsg).toBeDisplayed({
             message: 'Expected work location group name minimum length is 3 char (TC_171)',
         });
