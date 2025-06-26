@@ -879,14 +879,22 @@ describe('Work locations suite', () => {
         );
        
         await WorkLocations.workLocationEditButtons[0].moveTo();
-        await WorkLocations.dropdownEditOption.click();
 
-        await expect(WorkLocations.workLocationGroupAction).toBeDisplayed({
-            message: 'Expected Delete button should be shown (TC_177)',
-        });
-        await expect(WorkLocations.workLocationGroupAction).toBeDisplayed({
-            message: 'Expected Edit button should be shown (TC_180)',
-        });
+        const items = await WorkLocations.workLocationGroupAction;
+        let deleteItemVisible = false;
+
+        for (const item of items) {
+            const text = await item.getText();
+            if (text.includes('Delete') && await item.isDisplayed()) {
+                deleteItemVisible = true;
+                break;
+            }
+        }
+
+        await expect(deleteItemVisible).toBe(true);
+
+        await WorkLocations.dropdownEditOption.click();
+        await expect(WorkLocations.cancelButton).toBeDisplayed();
     });
  
     it('TC_182 - Check Error Message Group Templates', async () => {
@@ -900,6 +908,176 @@ describe('Work locations suite', () => {
         await WorkLocations.groupNameInputField.setValue("nkcsd")
         await expect(WorkLocations.groupNameErrorMsg).toBeDisplayed({
             message: 'Expected work location group not showing any error message(TC_182)',
+        });
+    });
+
+    it('TC_103 - Check work loction template', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+        await browser.waitUntil(async () => (
+            await WorkLocations.workLocationTemplatesDeleteIcons.length) > 0,
+            {
+                timeout: 5000,
+                timeoutMsg: 'Delete option should be present',
+            }
+        );
+    });
+
+    it('TC_249, TC_251 - Check Label field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.textLableBuildingBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.buildingBlockLableInputField.setValue(" ");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_249)',
+        });
+
+        await WorkLocations.buildingBlockLableInputField.setValue("6869869");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept space as input (TC_251)',
+        });
+ 
+        await WorkLocations.buildingBlockLableInputField.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept only special character as input',
+        });
+ 
+        await WorkLocations.buildingBlockLableInputField.setValue("q");
+ 
+        await expect(WorkLocations.buildingBlockLableInputFieldErrorMsg).toBeDisplayed({
+            message: 'Label should not accept one character as input ',
+        });
+    });
+ 
+    it('TC_254, TC_256 - Check Name field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.nameInputFieldBuildingBlock.setValue(" ");
+ 
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept space as input (TC_254)',
+        });
+
+        await WorkLocations.nameInputFieldBuildingBlock.setValue("6869869");
+ 
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept space as input (TC_256)',
+        });
+ 
+        await WorkLocations.nameInputFieldBuildingBlock.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept only special character as input',
+        });
+ 
+        await WorkLocations.nameInputFieldBuildingBlock.setValue("q");
+ 
+        await expect(WorkLocations.nameInputFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Name should not accept one character as input ',
+        });
+    });
+    
+     it('TC_257 - Check Option field inside text label bulding blocks for checkbox ', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.firstOptionInputBlock.setValue(" ");
+ 
+        await expect(WorkLocations.firstOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+
+        await WorkLocations.secondOptionInputBlock.setValue(" ");
+ 
+        await expect(WorkLocations.secondOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+
+        await WorkLocations.firstOptionInputBlock.setValue("6869869");
+ 
+        await expect(WorkLocations.firstOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+
+        await WorkLocations.firstOptionInputBlock.setValue("6869869");
+ 
+        await expect(WorkLocations.firstOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept space as input (TC_257)',
+        });
+ 
+        await WorkLocations.secondOptionInputBlock.setValue("@@@@@@");
+ 
+        await expect(WorkLocations.secondOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept only special character as input (TC_257)',
+        });
+
+        await WorkLocations.firstOptionInputBlock.setValue("q");
+ 
+        await expect(WorkLocations.firstOptionInputBlock).toBeDisplayed({
+            message: 'Option Name should not accept one character as input (TC_257)',
+        });
+ 
+        await WorkLocations.secondOptionInputBlock.setValue("q");
+ 
+        await expect(WorkLocations.secondOptionInputBlockErrorMsg).toBeDisplayed({
+            message: 'Option Name should not accept one character as input (TC_257)',
+        });
+    });
+
+    it('TC_261, TC_263 - Check work loction template', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.displayDependentFieldBuildingBlock.setValue(" ");
+ 
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Display dependent on should not accept space as input (TC_261)',
+        });
+
+        await WorkLocations.displayDependentFieldBuildingBlock.setValue("78868678");
+ 
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Display dependent on should not accept numeric as input (TC_263)',
+        });
+    });
+
+    it('TC_266, TC_268 - Check work loction template', async () => {
+        await WorkLocations.openWorkLocationTemplates();
+ 
+        await expect(WorkLocations.createWorkLocationTemplateButton).toBeDisplayed();
+        await WorkLocations.createWorkLocationTemplateButton.click();
+ 
+        await WorkLocations.checkboxGroupBlock.click();
+        await WorkLocations.firsEditBuildingBlockButton.click();
+        await WorkLocations.requiredDependentOnFieldBuildingBlock.setValue(" ");
+ 
+        await expect(WorkLocations.requiredDependentOnFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Required dependent on should not accept space as input (TC_266)',
+        });
+
+        await WorkLocations.requiredDependentOnFieldBuildingBlock.setValue("6767676");
+ 
+        await expect(WorkLocations.displayDependentFieldBuildingBlockErrorMsg).toBeDisplayed({
+            message: 'Required dependent on should not accept numeric as input (TC_268)',
         });
     });
 });
