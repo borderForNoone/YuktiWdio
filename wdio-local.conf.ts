@@ -53,6 +53,6 @@ export const config: WebdriverIO.Config = {
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000,
-        grep: /.*TC_103.*/
+        // grep: /.*TC_103.*/
     },
 }
