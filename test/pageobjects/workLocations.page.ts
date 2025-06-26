@@ -121,6 +121,10 @@ class WorkLocationsPage extends Page {
         return $("li.formbuilder-icon-checkbox-group");
     }
 
+    public get requiredCheckboxGroupBlock() {
+        return $('inpt[name="required"]');
+    }
+
     public get radioGroupBlock() {
         return $("li.formbuilder-icon-radio-group");
     }
@@ -259,6 +263,14 @@ class WorkLocationsPage extends Page {
 
     public get workLocationTemplateSelector() {
         return $('select[name="workLocationElements"]');
+    }
+
+    public get workLocationTemplatesEditIcons() {
+        return $$('.edit-icon');
+    }
+
+    public get workLocationTemplatesDeleteIcons() {
+        return $$('.delete-icon');
     }
 
     public get accessGroupSelector() {
