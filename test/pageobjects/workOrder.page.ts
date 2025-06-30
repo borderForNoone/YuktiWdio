@@ -1,4 +1,5 @@
 import Page from './page';
+import LoginPage from './login.page';
 
 class WorkOrderPage extends Page {
     public get workOrders() {
@@ -38,7 +39,23 @@ class WorkOrderPage extends Page {
     }
 
     public get assignWorkLocationInputField() {
-        return $('select[name="projectId"]');
+        return $('input[placeholder="Search Work location to add"]');
+    }
+
+    public get workLocationFirstDropdownOption() {
+        return $$('.ant-select-item-option-content div')[0];
+    }
+
+    public get vendorInputField() {
+        return $('#react-select-2-input');
+    }
+
+    public get crewInputField() {
+        return $('#react-select-3-input');
+    }
+
+    public get lastCrewDropdowmOption() {
+        return $$('//div[@id="react-select-3-listbox"]/*')[2];
     }
 
     public get warehouseSelector() {
@@ -91,6 +108,69 @@ class WorkOrderPage extends Page {
 
     public openSwimlane() {
         return super.open('work-order/swim-lane');
+    }
+
+    public async assignWorkOrderToTheCrew(): Promise<void> {
+        const { remote } = await import('webdriverio');
+
+        const webBrowser = await remote({
+            capabilities: {
+                browserName: 'chrome',
+            }
+        });
+
+        await webBrowser.setWindowSize(1920, 1080);
+        await webBrowser.url(`${process.env.BASE_URL}/work-order/list-view`);
+
+        const userInput = await webBrowser.$('input[name="userName"]');
+        const passwordInput = await webBrowser.$('input[name="password"]');
+        const loginButton = await webBrowser.$('.btn-signIn');
+
+        await userInput.setValue(`${process.env.EMAIL}`);
+        await passwordInput.setValue(`${process.env.PASSWORD}`);
+        await loginButton.click();
+
+        await webBrowser.waitUntil(async () => {
+            return !(await userInput.isDisplayed());
+        }, {
+            timeout: 10000,
+            timeoutMsg: 'Login form did not disappear',
+        });
+
+        await webBrowser.url(`${process.env.BASE_URL}/work-order/list-view/create`);
+
+        const workOrdetTemplates = webBrowser.$$('div.location-template-card');
+        const nextButton = webBrowser.$('button.GreenButton');
+        const projectNameSelector = webBrowser.$('select[name="projectId"]');
+        const assignWorkLocationInputField = webBrowser.$('input[placeholder="Search Work location to add"]');
+        const workLocationFirstDropdownOption = webBrowser.$$('.ant-select-item-option-content div')[0];
+        const warehouseSelector = webBrowser.$('select[name="warehouseId"]');
+        const vendorInputField = webBrowser.$('#react-select-2-input');
+        const crewInputField = webBrowser.$('#react-select-3-input');
+        const lastCrewDropdowmOption = webBrowser.$$('//div[@id="react-select-3-listbox"]//*')[2];
+        const publishButton = webBrowser.$("button.GreenButton");
+        const successMsg = webBrowser.$('.ant-message-success');
+        
+        await workOrdetTemplates[0].click();
+        await nextButton.click();
+
+        await projectNameSelector.selectByVisibleText('test');
+        await assignWorkLocationInputField.setValue('yu30');
+        await workLocationFirstDropdownOption.click();
+        await warehouseSelector.selectByVisibleText('Silchar Store');
+        await vendorInputField.click();
+        await vendorInputField.setValue('Anvil Cables');
+        await vendorInputField.click();
+        await webBrowser.keys('Enter');
+
+        await crewInputField.setValue('demo123');
+        await crewInputField.click();
+        await webBrowser.keys('Enter');
+
+        await publishButton.click();
+
+        await expect(successMsg).toBeDisplayed();
+        await webBrowser.deleteSession();
     }
 }
 
