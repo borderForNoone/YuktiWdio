@@ -1,3 +1,0 @@
-{
-  "text": "kramit_APDCL@anvilcables.in"
-}
