@@ -84,6 +84,6 @@ describe('Access Groups suite', () => {
 
         await browser.releaseActions();
 
-        await expect(AccessGroupsPage.createNewAccessGroupButton).toBeDisplayedInViewport();
+        await expect(AccessGroupsPage.createNewAccessGroupButton).toBeDisplayedInViewport({message: "Page stops being visible after clicking outside of edit Access Group window"});
     });
 });
