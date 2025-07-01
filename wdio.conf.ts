@@ -6,11 +6,12 @@ export const config: WebdriverIO.Config = {
     tsConfigPath: './tsconfig.json',
 
     specs: [
-        './test/specs/**/*.ts'
+        './test/specs/**/*.ts',
+        './test/specs/e2e/*.ts',
     ],
 
     exclude: [
-        // 'path/to/excluded/files'
+        './test/specs/mobile/**/*.ts'
     ],
 
     maxInstances: 10,

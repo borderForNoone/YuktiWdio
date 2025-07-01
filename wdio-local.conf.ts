@@ -6,7 +6,8 @@ export const config: WebdriverIO.Config = {
     tsConfigPath: './tsconfig.json',
 
     specs: [
-        './test/specs/**/*.ts'
+        './test/specs/**/*.ts',
+        './test/specs/e2e/*.ts',
     ],
 
     exclude: [
@@ -53,6 +54,6 @@ export const config: WebdriverIO.Config = {
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000,
-        // grep: /.*TC_103.*/
+        grep: /.*YUK-148.*/
     },
 }

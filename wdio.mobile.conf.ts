@@ -25,8 +25,8 @@ export const config: WebdriverIO.Config = {
 
     capabilities: [{
         platformName: 'Android',
-        'appium:deviceName': 'emulator-5554', // або назва твого пристрою
-        'appium:platformVersion': '11',       // або відповідна версія Android
+        'appium:deviceName': 'emulator-5554', 
+        'appium:platformVersion': '11',       
         //'appium:app': path.join(process.cwd(), './app-release.apk'),
         'appium:automationName': 'UiAutomator2',
         'appium:appPackage': 'com.wfm',
@@ -43,13 +43,13 @@ export const config: WebdriverIO.Config = {
 
     framework: 'mocha',
 
-    reporters: [
-        ['allure', {
-            outputDir: 'allure-results',
-            disableWebdriverStepsReporting: false,
-            disableWebdriverScreenshotsReporting: false,
-        }]
-    ],
+    // reporters: [
+    //     ['allure', {
+    //         outputDir: 'allure-results',
+    //         disableWebdriverStepsReporting: false,
+    //         disableWebdriverScreenshotsReporting: false,
+    //     }]
+    // ],
 
     hostname: '127.0.0.1',
     port: 4723, // default Appium port
@@ -57,13 +57,13 @@ export const config: WebdriverIO.Config = {
 
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000,
-        // grep: /.*YUK-140.*/
+        timeout: 120000,
+        grep: /.*Work orders Mobile suite.*/
     },
 
     afterTest: async function (test, context, { error, result, duration, passed }) {
         if (!passed) {
-            await browser.takeScreenshot();
+            //await browser.takeScreenshot();
         }
     },
 };

@@ -1,6 +1,22 @@
 import Page from './page';
 
 class WorkLocationsPage extends Page {
+    public get textLable() {
+        return $('div h3');
+    }
+
+    public get inputField() {
+        return $('input[name*="text"]');
+    }
+
+    public get templateNameInputField() {
+        return $('input[name="name"]');
+    }
+
+    public get statusSwitch() {
+        return $('label[for="astatus"]');
+    }
+
     public get workLocationGroupTable() {
         return $$("tbody.ant-table-tbody tr.ant-table-row");
     }
@@ -265,6 +281,10 @@ class WorkLocationsPage extends Page {
         return $('select[name="workLocationElements"]');
     }
 
+    public get barcodeInputField() {
+        return $('input[name*="barcode"]');
+    }
+
     public get workLocationTemplatesEditIcons() {
         return $$('.edit-icon');
     }
@@ -279,6 +299,10 @@ class WorkLocationsPage extends Page {
 
     public get cancelButton() {
         return $('.lightBlueButton');
+    }
+
+    public get editWorkLocationTemplateButtons() {
+        return $$('.edit-icon');
     }
 
     public open() {

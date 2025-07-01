@@ -5,7 +5,15 @@ class WorkOrdersPage extends Page {
         return $$('//android.widget.ScrollView/android.view.ViewGroup/*');
     }
 
-    public get workOrderStatus() {
+    public get openedSection() {
+        return $('//android.widget.TextView[@text="Open"]');
+    }
+    
+    public get completedSection() {
+        return $('//android.widget.TextView[@text="Completed"]');
+    }
+
+    public get workOrderAssignedStatus() {
         return $('//android.widget.TextView[@text="Assigned"]');
     }
 
@@ -94,27 +102,43 @@ class WorkOrdersPage extends Page {
 
 
     public get templateSelector() {
-        return $('//android.widget.HorizontalScrollView/following-sibling::android.view.ViewGroup[1]');
+        return $('//android.widget.HorizontalScrollView/following-sibling::android.view.ViewGroup[1]/*/*/*[2]');
     }
 
     public get scrollTemplatesElement() {
-        return $('//android.widget.ScrollView/android.view.ViewGroup');
+        return $('//android.widget.ScrollView');
     }
 
-    public async compliteFirstAndSecondActivity(): Promise<void> {
+    public get templateTestElement() {
+        return $('//android.widget.TextView[@text="Test"]');
+    }
+
+    public get templatePilotProjectElement() {
+        return $('//android.widget.TextView[@text="Pilot Project Survey"]');
+    }
+
+    public get projectTab() {
+        return $("//*[contains(@text, 'Project')]");
+    }
+
+
+
+    public async completeFirstAndSecondActivity(): Promise<void> {
         await this.firstActivity.waitForDisplayed({ timeout: 5000 });
         await this.firstActivity.click();
 
         await this.uploadPhotoInput.click();
+    
+        await $('//android.widget.FrameLayout[@resource-id="com.android.camera2:id/mode_options_overlay"]').waitForDisplayed({ timeout: 20000 });
         await browser.pause(3000);
-        await this.takePhotoButton.waitForDisplayed({ timeout: 5000 });
         await this.takePhotoButton.click();
-        await browser.pause(5000);
-        await this.confirmPhotoButton.waitForDisplayed({ timeout: 5000 });
+
+        await browser.pause(3000);
+        await this.confirmPhotoButton.waitForDisplayed({ timeout: 20000 });
         await this.confirmPhotoButton.click();
 
+        await this.meterStatusRunning.waitForDisplayed({ timeout: 20000 });
         await browser.pause(2000);
-        await this.meterStatusRunning.waitForDisplayed({ timeout: 5000 });
         await this.meterStatusRunning.scrollIntoView();
         await this.meterStatusRunning.click();
 

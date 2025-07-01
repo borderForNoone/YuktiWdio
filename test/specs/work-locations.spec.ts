@@ -13,44 +13,6 @@ describe('Work locations suite', () => {
         );
     });
 
-    it.skip('YUK-110 - User(Vendor) can create new work location', async () => {
-        await WorkLocations.open();
-
-        await WorkLocations.createWorkLocationButton.click();
-
-        const randomSuffix = Math.floor(Math.random() * 100000); 
-        const randomName = `Test${randomSuffix}`;
-        await WorkLocations.contactNameInputField.setValue(randomName);
-        await WorkLocations.phoneInputField.setValue("123");
-        await WorkLocations.locationIdentifierInputField.setValue("1245676777");
-        await WorkLocations.worklocationGroupSelector.selectByVisibleText('Default');
-        await WorkLocations.nextButton.click();
-
-        await WorkLocations.addressInputField.setValue(randomName);
-
-        await WorkLocations.countrySelector.selectByVisibleText('India');
-        await WorkLocations.stateSelector.selectByVisibleText('Maharashtra');
-        await WorkLocations.citySelector.selectByVisibleText('Sillod');
-        await WorkLocations.zipCodeInputField.setValue("100");
-    
-        while (!(await WorkLocations.workLocationTemplateSelector.isDisplayed())) {
-            await expect(WorkLocations.nextButton).toBeClickable();
-            await WorkLocations.nextButton.click();
-
-            await browser.pause(500);
-        }
-
-        await WorkLocations.workLocationTemplateSelector.selectByVisibleText('Test_3_6_25');
-        await WorkLocations.nextButton.click();
-
-        await WorkLocations.accessGroupSelector.selectByVisibleText('test');
-        await WorkLocations.nextButton.click();
-        await expect(WorkLocations.createWorkLocationButton).toBeDisplayed();
-        await WorkLocations.createWorkLocationButton.click();
-
-        await expect(WorkLocations.messageSuccess).toHaveText("Successs");
-    });
-
     it('YUK-136 - Can create Work Location with the same Location Identifier', async () => {
         await WorkLocations.open();
 

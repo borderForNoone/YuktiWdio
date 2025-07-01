@@ -7,11 +7,12 @@ export default class Page {
     }
 
     public get homeFooterIcon() {
-        return $('//android.widget.Button[@content-desc="DASHBOARD, tab, 1 of 5"]/android.view.ViewGroup/android.view.ViewGroup');
+        return $("//android.widget.Button[contains(@content-desc, 'DASHBOARD')]");
     }
 
     public get workOrdersFooterIcon() {
-        return $('//android.widget.Button[@content-desc="WORK_ORDERS, tab, 2 of 5"]/android.view.ViewGroup');
+        return $("//android.widget.Button[contains(@content-desc, 'WORK_ORDERS')]");
+        
     }
 
     public get assetsFooterIcon() {
